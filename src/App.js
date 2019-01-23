@@ -18,8 +18,11 @@ class App extends Component {
   getBlackCriaturas() {
     getPersons()
     .then(data => {
+
+      const cleanData = data.results.map((item, index ) => ({...item, id:index}));
+
       this.setState({
-        results: data.results
+        results: cleanData
       });
     });
   }
@@ -27,11 +30,11 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-      <h1 className="app__title">Lista negra de empleados 😡</h1>
+      <h1 className="app__title">Lista negra de empleados</h1>
         <ul className="app__list">
           {this.state.results.map(item => {
             return (
-              <li className="app__list-item">
+              <li className="app__list-item" key={item.id}>
                 <div className="person">
                   <h2 className="person__name">{`${item.name.first} ${item.name.last}`}</h2>
                   <img className="person__image" src={item.picture.medium} alt={`${item.name.first} ${item.name.last}`}/>
