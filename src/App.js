@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {getPersons} from './services/personService';
-import './App.css';
+import './App.scss';
 
 
 class App extends Component {
